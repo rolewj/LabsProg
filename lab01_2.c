@@ -3,15 +3,17 @@
 
 int a[10000] = {0};
 
-int rec_eratos(int i, int size){
+void set_ones(int i, int size, int n){
+	if (n < size){
+		a[n] = 1;
+		set_ones(i, size, n+i);
+	}
+}
+
+void rec_eratos(int i, int size){
 	if (i*i < size){
-		for (int n = i*i; n<size; n += i){
-			a[n] = 1;
-		}
-		return rec_eratos(i+1, size);
-	} 
-	else {
-		return 0;
+		set_ones(i, size, i*i);
+		rec_eratos(i+1, size);
 	}
 }
 
@@ -29,7 +31,7 @@ int main(int argc, char** argv){
 	printf("Простые числа: ");
 	for (int i = n; i<size; i++){
 		if (a[i] == 0){
-			printf("%d ", i);    
+			printf("%d ", i);
 		}
 	}
 	return 0;
