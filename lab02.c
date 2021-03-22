@@ -14,7 +14,7 @@ typedef struct{
 } Points;
 
 double func_y(Parabola* p, double x){
-  return fabs(p->a*x*x + p->b*x + p->c);
+	return fabs(p->a*x*x + p->b*x + p->c);
 }
 
 double Rect_Solve(Parabola* p, double a, double b){
@@ -23,14 +23,14 @@ double Rect_Solve(Parabola* p, double a, double b){
 	printf("Enter the upper(b) limits of integration: ");
 	scanf("%lf", &b);
 	const double dx = 0.001;
-  if(a > b){
-    return 0;
-  }
-  double S = 0.0;
-  for (double x = a; x <= b; x+=dx){
-    S += dx*(func_y(p, x + dx/2.0));
-  }
-  printf("Area from a to b: %lf square units", S);
+	if(a > b){
+		return 0;
+	}
+	double S = 0.0;
+	for (double x = a; x <= b; x+=dx){
+		S += dx*(func_y(p, x + dx/2.0));
+	}
+	printf("Area from a to b: %lf square units", S);
 }
 
 void Direction(Parabola* p){
