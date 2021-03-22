@@ -30,7 +30,7 @@ double Rect_Solve(Parabola* p, double a, double b){
   for (double x = a; x <= b; x+=dx){
     S += dx*(func_y(p, x + dx/2.0));
   }
-  printf("Area from a to b: %lf", S);
+  printf("Area from a to b: %lf square units", S);
 }
 
 void Direction(Parabola* p){
@@ -91,6 +91,10 @@ int main(int argc, char** argv){
 		scanf("%lf", &parables[i].b);
 		printf("Please enter a  `c` value: ");
 		scanf("%lf", &parables[i].c);
+		if (parables[i].a == 0){
+			printf("Parameter `a` is entered incorrectly\n\n");
+			continue;
+		}
 		root(&points[i], &parables[i]);
 		Direction(&parables[i]);
 		Apex(&parables[i]);
@@ -98,9 +102,9 @@ int main(int argc, char** argv){
 		Rect_Solve(&parables[i], a, b);
 		printf("\nThe points of intersection of the parabola with the x-axis: ");
 		for(int j = 0; j < points[i].k; j++){
-			printf("%f ", points[i].points[j]);
+			printf("%g ", points[i].points[j]);
 		}
-		printf("\n");
+		printf("\n\n");
 	}
 	free(parables);
 	return 0;
